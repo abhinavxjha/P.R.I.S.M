@@ -1,205 +1,173 @@
 <div align="center">
 
-# 🔺 P.R.I.S.M
+<img src="assets/banner.svg" alt="P.R.I.S.M. - Pattern Recognition for Images & Symbol Mathematics" width="100%">
 
-### *Teaching a neural network to read the language of mathematics, one handwritten stroke at a time.*
-
-![Status](https://img.shields.io/badge/status-work_in_progress-orange?style=for-the-badge)
-![Type](https://img.shields.io/badge/neural_network-built_from_scratch-blueviolet?style=for-the-badge)
-![Input](https://img.shields.io/badge/input-28×28_images-00c2a8?style=for-the-badge)
-![Made at](https://img.shields.io/badge/made_at-JUIT_Solan-red?style=for-the-badge)
-
-**`✍️ handwritten image`** ➜ **`🧠 neural network`** ➜ **`🔢 digit · ➕ operator · 🔲 bracket`**
-
-</div>
-
----
-
-## 👁️ What is PRISM?
-
-A prism takes one beam of light and splits it into something you can actually read.
-
-**PRISM does the same for handwriting.** It takes a messy, human-drawn 28×28 pixel image and splits it into a clear answer: *is this a digit, a mathematical operator, or a bracket?*
-
-No black-box one-liners. The goal of this project is to **understand every gear inside a neural network**, from raw pixels to weight updates, by building it piece by piece instead of calling `model.fit()`.
-
----
-
-## 🎯 The Mission
-
-| Input | Output |
-|-------|--------|
-| A handwritten 28×28 grayscale image | A predicted class label |
-
-**Target classes**
-
-- 🔢 **Digits**: `0 1 2 3 4 5 6 7 8 9`
-- ➕ **Operators**: `+ − × ÷ =` and friends
-- 🔲 **Brackets**: `( )` and friends
-
-*(Update this list to match your exact dataset classes.)*
-
----
-
-## 🧬 How It Works
-
-```
-   ┌────────────┐     ┌────────────┐     ┌────────────┐     ┌────────────┐
-   │  28 × 28   │     │   Hidden   │     │   Hidden   │     │   Output   │
-   │   image    │ ──▶ │   Layer    │ ──▶ │ activation │ ──▶ │  softmax   │ ──▶  prediction
-   │ (784 px)   │     │  W·x + b   │     │            │     │ probabilities│
-   └────────────┘     └────────────┘     └────────────┘     └────────────┘
-         ▲                                                          │
-         │                 ◀── backpropagation ◀── loss ◀───────────┘
-         └──────────── gradient descent updates weights & biases
-```
-
-*(Adjust the diagram to match your actual layer count and activations.)*
-
-**The learning loop, in plain English:**
-
-1. **Forward pass**: pixels flow through the layers and the network makes a guess.
-2. **Loss**: measure *how wrong* that guess was.
-3. **Backpropagation**: trace the blame backward through every layer.
-4. **Gradient descent**: nudge every weight and bias a tiny step toward "less wrong".
-5. **Repeat** for thousands of images, over many epochs, until the guesses get good.
-
----
-
-## 🚧 Current Status
-
-> **PRISM is under active construction.** The foundation is in place, and the learning machinery is the next big milestone.
-
-| Stage | Status |
-|-------|:------:|
-| Dataset loading & preprocessing | ✅ |
-| Network structure & forward pass | ✅ |
-| One-hot encoding | 🔜 |
-| Loss + backpropagation | 🔜 |
-| Gradient calculation & gradient descent | 🔜 |
-| Training loop with metrics | 🔜 |
-| Evaluation on test set | 🔜 |
-| Visualizations | 🔜 |
-| Hyperparameter experiments | 🔜 |
-| Save / load model + prediction pipeline | 🔜 |
-
----
-
-## 🗺️ Roadmap: Future Development
-
-The next stage turns PRISM from a network that *computes* into a network that *learns*.
-
-### ⚙️ Phase 1: Make it learn
-- [ ] **One-hot encoding** of labels so the network can compare predictions against targets
-- [ ] **Backpropagation** to push error backward through every layer
-- [ ] **Gradient calculation** for all weights and biases
-- [ ] **Gradient descent** so the network updates itself from its mistakes
-
-### 🏋️ Phase 2: Train it
-- [ ] Train over **multiple epochs**
-- [ ] Track **loss and accuracy** every epoch
-- [ ] **Evaluate on the held-out test dataset**
-- [ ] **Visualize** the training curves and sample predictions
-
-### 🔬 Phase 3: Understand it
-- [ ] Experiment with different **learning rates**
-- [ ] Experiment with different **hidden-layer sizes**
-- [ ] Tune other **hyperparameters** and study how each one changes performance
-
-### 🚀 Phase 4: Ship it
-- [ ] **Save the trained parameters** (weights and biases)
-- [ ] Build a **prediction pipeline**: feed in any new 28×28 handwritten image and get back a **digit, operator, or bracket**
-
----
-
-## 🧮 The Math Behind the Magic
-
-**Forward pass**
-
-$$z = W x + b \qquad a = f(z)$$
-
-**Loss** *(how wrong are we?)*
-
-$$L = -\sum_i y_i \log(\hat{y}_i)$$
-
-**Gradient descent update** *(how we get better)*
-
-$$W \leftarrow W - \eta \frac{\partial L}{\partial W} \qquad b \leftarrow b - \eta \frac{\partial L}{\partial b}$$
-
-where **η** is the learning rate, one of the hyperparameters this project will explore.
-
----
-
-## 🛠️ Getting Started
-
-```bash
-# 1. Clone the repo
-git clone https://github.com/abhinavxjha/P.R.I.S.M.git
-cd P.R.I.S.M
-
-# 2. Install dependencies
-pip install -r requirements.txt
-
-# 3. Open the notebook / run the project
-jupyter notebook
-```
-
-*(Edit these steps to match your actual file names and setup.)*
-
----
-
-## 🔮 Planned Usage
-
-Once the prediction pipeline lands, using PRISM will look like this:
-
-```python
-from prism import load_model, predict
-
-model = load_model("prism_weights")
-label = predict(model, "my_handwritten_symbol.png")
-
-print(label)   # → "+"   (or "7", or "(" ...)
-```
-
-*(Illustrative only. The final API will be documented when it exists.)*
-
----
-
-## 🧰 Tech Stack
-
+![Status](https://img.shields.io/badge/status-work_in_progress-orange?style=flat-square)
 ![Python](https://img.shields.io/badge/Python-3776AB?style=flat-square&logo=python&logoColor=white)
 ![NumPy](https://img.shields.io/badge/NumPy-013243?style=flat-square&logo=numpy&logoColor=white)
 ![Matplotlib](https://img.shields.io/badge/Matplotlib-11557c?style=flat-square)
-![Jupyter](https://img.shields.io/badge/Jupyter-F37626?style=flat-square&logo=jupyter&logoColor=white)
 
-*(Adjust badges to the libraries you actually use.)*
-
----
-
-## 💡 Why Build It From Scratch?
-
-Because anyone can import a framework. Writing backpropagation by hand is how you *really* learn what a gradient is, why learning rates blow up, and what a hidden layer is actually doing. PRISM is as much a learning journey as it is a classifier.
+</div>
 
 ---
 
-## 🤝 Contributing
+## What is P.R.I.S.M.?
 
-Ideas, bug reports, and suggestions are welcome. Open an issue or a pull request.
+P.R.I.S.M. is a neural network project that aims to recognise handwritten mathematical symbols. Given a 28×28 image, the finished system should say whether it is a **digit**, a **mathematical operator**, or a **bracket**.
+
+The network is written by hand with NumPy instead of using a deep learning framework, so every step (forward pass, loss, and later backpropagation and weight updates) is something I write and understand myself.
+
+> **Status:** the data pipeline, the forward pass and the loss calculation are done. **The network does not learn yet.** Backpropagation and gradient descent are the next step, so the weights are still random and predictions are essentially guesses.
+
+---
+
+## What's implemented so far
+
+Everything lives in [`main.py`](main.py), which currently runs top to bottom as a script.
+
+| Stage | Status |
+|-------|:------:|
+| Load dataset from `.npz` and inspect shapes, dtypes, min/max | ✅ |
+| Visualise a sample image with its label | ✅ |
+| Normalise pixels to [0, 1] and flatten each image into a vector | ✅ |
+| Count samples per class | ✅ |
+| Random weight initialisation, zero biases | ✅ |
+| Forward pass: hidden layer (ReLU) and output layer (softmax) | ✅ |
+| Cross-entropy loss (single sample and averaged over the whole dataset) | ✅ |
+| One-hot encoding | 🔜 |
+| Backpropagation, gradient calculation, gradient descent | 🔜 |
+| Training loop, evaluation, visualisation | 🔜 |
+| Hyperparameter experiments | 🔜 |
+| Saving the model and a prediction pipeline | 🔜 |
 
 ---
 
-## 👤 Author
+## How the network currently works
 
-**Abhinav Jha**
-B.Tech CSE, Jaypee University of Information Technology (JUIT), Solan
-🔗 [GitHub: @abhinavxjha](https://github.com/abhinavxjha)
-
----
+Data flows left to right through the network. The animation below is an illustration of that forward pass, not a recording of real values.
 
 <div align="center">
 
-⭐ **If you like watching a neural network learn to read, star the repo!** ⭐
-
-*Light in. Meaning out.*
+<img src="assets/forward-pass.svg" alt="Animated forward pass through the input, hidden and output layers" width="100%">
 
 </div>
+
+The diagram below shows the architecture the code implements. The probability bars on the right are an **illustrative example**, not output from a trained model.
+
+<div align="center">
+
+<img src="assets/architecture.png" alt="P.R.I.S.M. network architecture: flattened input, 128-neuron ReLU hidden layer, 16-neuron softmax output" width="100%">
+
+</div>
+
+**Data preparation**
+
+1. The images (`img`) and labels (`label`) are loaded from `Data/extend_mnist_eval.npz`.
+2. Pixel values are divided by 255 so they fall between 0 and 1.
+3. Each image is flattened into a single row, so the dataset becomes a 2D matrix with one sample per row.
+4. Labels are cast to integers.
+
+**Forward pass**
+
+```python
+z1 = np.dot(x, w1) + b1        # hidden layer pre-activation
+A1 = relu(z1)                  # ReLU: max(0, z)
+z2 = np.dot(A1, w2) + b2       # output layer pre-activation
+A2 = softmax(z2)               # one probability per class, rows sum to 1
+```
+
+| Layer | Size | Notes |
+|-------|------|-------|
+| Input | one value per pixel (28×28 flattened) | normalised to [0, 1] |
+| Hidden | 128 neurons | ReLU, weights from `np.random.randn`, biases start at zero |
+| Output | 16 neurons | softmax, weights from `np.random.randn`, biases start at zero |
+
+**Loss**
+
+The loss is categorical cross-entropy. For each sample it takes the probability the network gave to the correct class, applies `-log`, and then averages over all samples. A small epsilon (`1e-8`) is added inside the log to avoid `log(0)`. The integer labels are used directly to index into the softmax output, so one-hot encoding isn't needed for this step yet; it will come with the backward pass.
+
+$$L = -\frac{1}{N}\sum_{n=1}^{N}\log\left(\hat{y}_{n,\,y_n} + \varepsilon\right)$$
+
+Since the weights are random and untrained, the loss value you get right now just reflects a network that has not learned anything.
+
+---
+
+## The 16 classes
+
+The output layer has 16 neurons, one per class. The diagram above shows the intended class layout:
+
+| Labels | Symbols |
+|:------:|---------|
+| 0 – 9 | digits `0`–`9` |
+| 10 – 13 | operators `+` `−` `×` `÷` |
+| 14 – 15 | brackets `(` `)` |
+
+The script prints the unique labels and the number of samples in each class, so you can check the label distribution of your copy of the dataset.
+
+---
+
+## Project structure
+
+```
+P.R.I.S.M./
+├── main.py          # data loading, preprocessing, forward pass, loss
+├── Data/
+│   └── extend_mnist_eval.npz   # dataset file read by main.py
+├── assets/
+│   ├── banner.svg              # animated header
+│   ├── forward-pass.svg        # animated forward-pass illustration
+│   └── architecture.png        # network diagram used in this README
+└── README.md
+```
+
+---
+
+## Running it
+
+`main.py` needs **Python 3**, **NumPy** and **Matplotlib**:
+
+```bash
+pip install numpy matplotlib
+python main.py
+```
+
+It expects the dataset at `Data/extend_mnist_eval.npz`, with `img` and `label` arrays. The script prints dataset information, opens a window with the first image, and then prints the forward-pass output and loss.
+
+> The path in `main.py` is written with a Windows-style backslash (`Data\extend_mnist_eval.npz`). On Linux or macOS, change it to `Data/extend_mnist_eval.npz`.
+
+---
+
+## Future Development
+
+The next stage of this project will focus on completing the neural network and turning it into a functional handwritten mathematical symbol recognition system. The remaining work includes implementing **one-hot encoding, backpropagation, gradient calculation, and gradient descent** so that the network can learn from its errors and update its weights and biases. After that, I will train the model over multiple epochs while tracking **loss and accuracy**, evaluate its performance on the test dataset, and visualize the training process and predictions. I will then experiment with different **learning rates, hidden-layer sizes, and other hyperparameters** to understand their effect on performance. Finally, I will save the trained model parameters and build a simple prediction pipeline that can take a new 28×28 handwritten image and classify it as a digit, mathematical operator, or bracket.
+
+### Roadmap
+
+- [x] Load and inspect the dataset
+- [x] Normalise and flatten the images
+- [x] Forward pass (ReLU hidden layer, softmax output)
+- [x] Cross-entropy loss
+- [ ] One-hot encoding of labels
+- [ ] Backpropagation and gradient calculation
+- [ ] Gradient descent (weight and bias updates)
+- [ ] Multi-epoch training with loss and accuracy tracking
+- [ ] Evaluation on the test dataset
+- [ ] Visualisation of training and predictions
+- [ ] Experiments with learning rate, hidden-layer size and other hyperparameters
+- [ ] Save trained parameters
+- [ ] Prediction pipeline for a new 28×28 image
+
+### The intended end result
+
+```
+handwritten 28×28 image  →  normalise + flatten  →  trained network  →  digit · operator · bracket
+```
+
+Once finished, you should be able to give the saved model a new handwritten image and get back its predicted class. This pipeline does not exist yet.
+
+---
+
+## Author
+
+**Abhinav Jha**, B.Tech CSE, Jaypee University of Information Technology (JUIT), Solan
+[GitHub: @abhinavxjha](https://github.com/abhinavxjha)
